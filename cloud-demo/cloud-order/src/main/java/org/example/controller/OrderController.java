@@ -3,6 +3,7 @@ package org.example.controller;
 import org.apache.ibatis.annotations.Param;
 import org.example.domain.Video;
 import org.example.domain.VideoOrder;
+import org.example.feign.VideoFeign;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,14 +28,22 @@ public class OrderController {
     private RestTemplate restTemplate;;
     @Autowired
     private DiscoveryClient discoveryClient;
+    @Autowired
+    private VideoFeign  videoFeign;
 
     @GetMapping("getOrder")
     public Object getOrder(@Param("id") int id){
-        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-video");
-        ServiceInstance serviceInstance = instances.get(0);
-        Video videoOrders =   restTemplate.getForObject("http://cloud-video/api/v1/video/findById?id="+id,Video.class);
-        if(null != videoOrders){
-            return videoOrders;
+//        List<ServiceInstance> instances = discoveryClient.getInstances("cloud-video");
+//        ServiceInstance serviceInstance = instances.get(0);
+//        Video videoOrders =   restTemplate.getForObject("http://cloud-video/api/v1/video/findById?id="+id,Video.class);
+        try{
+            Video videoOrders = videoFeign.findById(id);
+
+            if(null != videoOrders){
+                return videoOrders;
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
         return new VideoOrder();
     }

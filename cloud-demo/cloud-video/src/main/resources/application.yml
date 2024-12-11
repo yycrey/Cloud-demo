@@ -1,5 +1,5 @@
 server:
-  port: 9002
+  port: 9000
 spring:
   application:
     name: cloud-video
@@ -13,6 +13,11 @@ spring:
     password: abc123@ROOT
     hikari:
       max-lifetime: 120000
+  cloud:
+    sentinel:
+      transport:
+        dashboard: 127.0.0.1:8080
+        port: 9999
 # 控制台输出sql、下划线转驼峰
 mybatis:
   configuration:
