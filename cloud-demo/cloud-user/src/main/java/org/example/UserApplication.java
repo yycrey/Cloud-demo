@@ -13,10 +13,10 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
  * @Exception
  **/
 @SpringBootApplication
-@MapperScan("org.example.mapper")
 @EnableDiscoveryClient
-public class VideoApplication {
+//@MapperScan("org.example.mapper")
+public class UserApplication {
     public static void main(String[] args) {
-        SpringApplication.run(VideoApplication.class, args);
+        SpringApplication.run(UserApplication.class, args);
     }
 }

@@ -6,6 +6,8 @@ import org.example.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author yeyc
  * @Description 描述类的作用

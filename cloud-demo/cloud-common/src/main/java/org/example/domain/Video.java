@@ -18,6 +18,23 @@ public class Video {
     private Integer  price;
     private Date createTime;
     private Double point;
+    
+    /**
+     * @Description: 记录服务器信息
+     * @Param: 
+     * @Return: 
+     * @Author: yeyc
+     * @Date: 2024/12/11
+     */
+    private String serviceInfo;
+
+    public String getServiceInfo() {
+        return serviceInfo;
+    }
+
+    public void setServiceInfo(String serviceInfo) {
+        this.serviceInfo = serviceInfo;
+    }
 
     public Integer getId() {
         return id;

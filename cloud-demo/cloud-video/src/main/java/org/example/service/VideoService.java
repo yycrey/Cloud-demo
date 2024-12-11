@@ -3,6 +3,8 @@ package org.example.service;
 import org.example.domain.Video;
 import org.example.service.impl.VideoServiceImpl;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * @Author yeyc
  * @Description 描述类的作用

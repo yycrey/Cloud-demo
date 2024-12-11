@@ -1,11 +1,14 @@
 package org.example.controller;
 
 import org.apache.ibatis.annotations.Param;
+import org.example.domain.Video;
 import org.example.service.VideoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @Author yeyc
@@ -20,7 +23,9 @@ public class VideoController {
     @Autowired
     private VideoService videoService;
     @GetMapping("findById")
-    public Object findAll(@Param("id") int id){
-        return videoService.findById(id);
+    public Video findAll(@Param("id") int id, HttpServletRequest request){
+        Video video = videoService.findById(id);
+        video.setServiceInfo("serviceName:"+request.getServerName()+";servicePort"+request.getServerPort());
+        return video;
     }
 }
